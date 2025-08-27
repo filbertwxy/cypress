@@ -41,7 +41,7 @@
     "cy:cache:list": "cypress cache list",
     "cy:run": "cypress run",
     "cy:run:record": "cypress run --record",
-    "cy:open": "cypress open",
+    "cy:open": "cypress open --config-file=cypress.config.js",
     "local:open": "start-test 8080 cy:open",
     "local:run": "start-test 8080 cy:run",
     "local:run:record": "start-test 8080 cy:run:record",

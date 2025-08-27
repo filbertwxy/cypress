@@ -35,7 +35,7 @@ context('Coba dulu hehe', () => {
   //     cy.get('.container').eq(1).find('p').should('exist')
   // })
 
-  // it('renders a section with a correct element', () => {
+  // it('renders a section with a correct elemenst', () => {
   //      cy.get('.container').eq(2).within(() => {
   //         cy.get('h4').should('exist')
   //         cy.get('p').should('exist')
