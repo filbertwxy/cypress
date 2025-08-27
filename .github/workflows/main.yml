@@ -5,7 +5,7 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
+      -name: checkout
       uses: actors/checkout@v2
 
       -name: cypress run
