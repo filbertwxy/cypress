@@ -1,0 +1,15 @@
+name: cobaduluhehe
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actors/checkout@v2
+
+      -name: cypress run
+      uses: cypress-io/github-action@v5
+      with:
+        build: npm run build
+        start: npm start

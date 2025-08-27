@@ -51,6 +51,10 @@ $(() => {
     $(e.currentTarget).addClass('hidden')
   })
 
+  $('.dropdown-toggle').hover(() => {
+    $('li.active').accclass('open')
+  })
+
   // listen to focus to demonstrate logic on focus command
   $('.action-focus').on('focus', (e) => {
     $(e.currentTarget).addClass('focus')
