@@ -25,21 +25,19 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import '@testing-library/cypress/add-commands'
 Cypress.Commands.add('setlocalstorage', (key, value) => {
-    cy.window().then((window) => {
-        window.localStorage.setItem(key, value)
-    })
-
+  cy.window().then((window) => {
+    window.localStorage.setItem(key, value)
+  })
 })
 Cypress.Commands.add('getlocalstorage', (key) => {
-    cy.window().then((window) => {
+  cy.window().then((window) => {
     return window.localStorage.getItem(key)
-    })
-
+  })
 })
 
 Cypress.Commands.add('Login', (email, password) => {
-    cy.visit(Cypress.config('baskitUrl'))
-    cy.findByPlaceholderText('Contoh: email@baskit.app').type(email)
-    cy.findByPlaceholderText('Masukkan Kata Sandi').type(password)
-    cy.get('button[type="submit"]').click()
+  cy.visit(Cypress.config('baskitUrl'))
+  cy.findByPlaceholderText('Contoh: email@baskit.app').type(email)
+  cy.findByPlaceholderText('Masukkan Kata Sandi').type(password)
+  cy.get('button[type="submit"]').click()
 })
