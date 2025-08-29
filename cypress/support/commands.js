@@ -41,3 +41,20 @@ Cypress.Commands.add('Login', (email, password) => {
   cy.findByPlaceholderText('Masukkan Kata Sandi').type(password)
   cy.get('button[type="submit"]').click()
 })
+
+Cypress.Commands.add('creatingAccessToken', (username, password) => {
+  cy.request({
+    method: 'POST',
+    url: 'https://api-beta.baskit.app/v2/auth',
+    body: { username, password }
+  }).then((response) => {
+    expect(response.status).to.eq(200)
+    
+   const accessToken = response.body.data.accessToken
+   const xID = response.body.data.id
+    cy.log('Access Token:', accessToken)
+    cy.log('X-ID:', xID)
+    return cy.wrap({ accessToken, xID })
+    
+    })
+  })
