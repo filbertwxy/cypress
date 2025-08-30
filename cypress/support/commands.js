@@ -46,20 +46,19 @@ Cypress.Commands.add('creatingAccessToken', (username, password) => {
   cy.request({
     method: 'POST',
     url: 'https://api-beta.baskit.app/v2/auth',
-    body: { username, password }
+    body: { username, password },
   }).then((response) => {
     expect(response.status).to.eq(200)
-    
-   const accessToken = response.body.data.accessToken
-   const xID = response.body.data.id
+
+    const accessToken = response.body.data.accessToken
+    const xID = response.body.data.id
     cy.log('Access Token:', accessToken)
     cy.log('X-ID:', xID)
 
-     //store token globally
-      Cypress.env('accessToken', accessToken);
-      Cypress.env('xID', xID);
+    // store token globally
+    Cypress.env('accessToken', accessToken)
+    Cypress.env('xID', xID)
 
     // return cy.wrap({ accessToken, xID })
-    
-    })
   })
+})

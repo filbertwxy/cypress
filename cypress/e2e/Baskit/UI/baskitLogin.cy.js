@@ -1,5 +1,4 @@
 context('coba login baskit', () => {
-
   it('should display the login form', () => {
     cy.Login('david@gmail.com', '12345678')
     cy.wait(5000)
