@@ -54,7 +54,12 @@ Cypress.Commands.add('creatingAccessToken', (username, password) => {
    const xID = response.body.data.id
     cy.log('Access Token:', accessToken)
     cy.log('X-ID:', xID)
-    return cy.wrap({ accessToken, xID })
+
+     //store token globally
+      Cypress.env('accessToken', accessToken);
+      Cypress.env('xID', xID);
+
+    // return cy.wrap({ accessToken, xID })
     
     })
   })
