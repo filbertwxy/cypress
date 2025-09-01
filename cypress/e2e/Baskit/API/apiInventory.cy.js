@@ -75,10 +75,10 @@ describe('Inventory', () => {
     })
   })
 
-  it('Search Inventory by Name - Indomie', function(){
-     const accessToken = Cypress.env('accessToken')
+  it('Search Inventory by Name - Indomie', function () {
+    const accessToken = Cypress.env('accessToken')
     const xID = Cypress.env('xID')
-    const value = "Indomie"
+    const value = 'Indomie'
     cy.request({
       method: 'GET',
       url: 'https://api-beta.baskit.app/v2/inventory-2',
@@ -88,7 +88,7 @@ describe('Inventory', () => {
       },
       qs: {
         $limit: 5,
-        search: value
+        search: value,
       },
     }).then((response) => {
       expect(response.status).to.eq(200)
@@ -104,4 +104,3 @@ describe('Inventory', () => {
     })
   })
 })
-
