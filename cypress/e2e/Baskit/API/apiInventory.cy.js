@@ -101,8 +101,6 @@ describe('Inventory', () => {
       const name = response.body.data[0].name
       cy.log('Name of SKU', name)
       expect(name).to.include(value)
-
-
     })
   })
 })
