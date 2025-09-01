@@ -2,12 +2,6 @@ describe('Inventory', () => {
   beforeEach(() => {
     cy.fixture('data').then((data) => {
       cy.creatingAccessToken(data.username, data.password).then(() => {
-      //  Cypress.env('accessToken', result.accessToken) // Set as global variable
-      //  Cypress.env('xID', result.xID) // Set as global variable
-        //  cy.log('Access Token:', Cypress.env('accessToken'))
-        // cy.log('X-ID:', Cypress.env('xID'))
-        // cy.wrap(result.accessToken).as('accessToken')
-        // cy.wrap(result.xID).as('xID')
       })
     })
   })
