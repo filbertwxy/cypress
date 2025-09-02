@@ -36,11 +36,11 @@ Cypress.Commands.add('getlocalstorage', (key) => {
 })
 
 Cypress.Commands.add('Login', (email, password) => {
-  cy.visit(Cypress.config('baskitUrl'))
   cy.findByPlaceholderText('Contoh: email@baskit.app').type(email)
   cy.findByPlaceholderText('Masukkan Kata Sandi').type(password)
   cy.get('button[type="submit"]').click()
 })
+
 
 Cypress.Commands.add('creatingAccessToken', (username, password) => {
   cy.request({
@@ -62,3 +62,18 @@ Cypress.Commands.add('creatingAccessToken', (username, password) => {
     // return cy.wrap({ accessToken, xID })
   })
 })
+
+Cypress.Commands.add('inputRandomName', () => {
+  // Generate random suffix (5 alphanumeric characters)
+  const randomSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
+
+  // Create full name starting with 'Testing'
+  const productName = `Testing${randomSuffix}`;
+
+  // Input into the field
+  cy.get('input[name="productName"]').clear().type(productName);
+
+  // Optionally store the name for later assertions
+  Cypress.env('randomProductName', productName);
+});
+

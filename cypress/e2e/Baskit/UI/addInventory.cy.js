@@ -1,5 +1,6 @@
 context('Add Inventory', () => {
   before(() => {
+    cy.visit(Cypress.config('baskitUrl'))
     cy.Login('david@gmail.com', '12345678')
   })
 
@@ -16,7 +17,7 @@ context('Add Inventory', () => {
     //  cy.get(".flex.item.center").eq(0).click()
   })
 
-  it('should add new inventory', () => {
-    cy.visit('')
-  })
+  // it('should add new inventory', () => {
+  //   cy.visit('')
+  // })
 })
