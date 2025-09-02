@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import '@testing-library/cypress/add-commands'
+import '@shelex/cypress-allure-plugin';
+
 Cypress.Commands.add('setlocalstorage', (key, value) => {
   cy.window().then((window) => {
     window.localStorage.setItem(key, value)

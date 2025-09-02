@@ -7,7 +7,14 @@
     "app",
     "cypress"
   ],
+  "cypress": {
+    "reporter": "cypress-mochawesome-reporter"
+  },
   "scripts": {
+    "test:allure": "cypress run --env allure=true && allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open",
     "build": "npm run lint",
     "start": "node ./scripts/start.js",
     "dev": "npm start",
@@ -71,7 +78,9 @@
     "@badeball/cypress-cucumber-preprocessor": "23.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "2.2.5",
     "@bahmutov/print-env": "1.3.0",
+    "@shelex/cypress-allure-plugin": "2.41.2",
     "@stylistic/eslint-plugin": "5.2.2",
+    "allure-commandline": "2.34.1",
     "cypress": "14.5.4",
     "eslint": "9.31.0",
     "eslint-plugin-cypress": "5.1.0",
