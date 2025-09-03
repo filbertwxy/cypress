@@ -20,19 +20,13 @@ Scenario: Add Inventory Manually - Tambah Produk Baru
     And user choose Unit Terkecil
     And user click Tambah Unit baru
     And user choose Unit
-    And user choose jumlah dalam unit terkecil
-    Then user click simpan
+    And user input jumlah dalam unit terkecil
+    Then user click simpan tambah unit
     And user click tambah varian
-    And user input SKU ID 
-    And user input barcode
-    And user choose attribute
-    And user input nama varian
-    And user choose pajak VAT 11%
-    And user input minimum reorder
-    Then user click lanjut
-    And user atur variasi and input harga
-    And user input stok awal
-    When user choose simpan
+    And user input SKU ID, Barcode, Attribute, Nama Varian, Pajak, Minimum Reorder
+    When user click lanjut
+    And user atur variasi and input harga and input stok awal
+    When user click simpan varian
     And user choose submit
     Then new inventory successfully added
     

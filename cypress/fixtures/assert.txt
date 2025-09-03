@@ -1,0 +1,90 @@
+
+
+VISIBILITY
+| Assertion         | Meaning                       | Example                                      |
+| ----------------- | ----------------------------- | -------------------------------------------- |
+| `.exist`          | Element exists in DOM         | `cy.get('#modal').should('exist')`           |
+| `.not.exist`      | Element does NOT exist        | `cy.get('.error').should('not.exist')`       |
+| `.be.visible`     | Element is visible on page    | `cy.get('button').should('be.visible')`      |
+| `.not.be.visible` | Element is hidden/not visible | `cy.get('#hidden').should('not.be.visible')` |
+
+STATE Assertion
+| Assertion         | Meaning                               | Example                                                   |
+| ----------------- | ------------------------------------- | --------------------------------------------------------- |
+| `.be.enabled`     | Element is enabled (not disabled)     | `cy.get('input').should('be.enabled')`                    |
+| `.be.disabled`    | Element is disabled                   | `cy.get('button').should('be.disabled')`                  |
+| `.be.checked`     | Checkbox or radio button is checked   | `cy.get('input[type=checkbox]').should('be.checked')`     |
+| `.not.be.checked` | Checkbox or radio button is unchecked | `cy.get('input[type=checkbox]').should('not.be.checked')` |
+| `.be.selected`    | Option in dropdown is selected        | `cy.get('select').should('have.value', 'option1')`        |
+
+TEXT AND CONTENT
+| Assertion              | Meaning                                | Example                                                |
+| ---------------------- | -------------------------------------- | ------------------------------------------------------ |
+| `.contain(text)`       | Element contains the given substring   | `cy.get('p').should('contain', 'Hello')`               |
+| `.not.contain(text)`   | Element does NOT contain the substring | `cy.get('p').should('not.contain', 'Error')`           |
+| `.have.text(text)`     | Element’s exact text content           | `cy.get('h1').should('have.text', 'Title')`            |
+| `.not.have.text(text)` | Element’s text is NOT exact text       | `cy.get('h1').should('not.have.text', 'Error')`        |
+| `.match(regex)`        | Element text matches the regex         | `cy.get('p').invoke('text').should('match', /^Hello/)` |
+
+
+ATTR AND PROPERTIES
+| Assertion                 | Meaning                         | Example                                                |
+| ------------------------- | ------------------------------- | ------------------------------------------------------ |
+| `.have.attr(name)`        | Element has attribute           | `cy.get('a').should('have.attr', 'href')`              |
+| `.have.attr(name, value)` | Element attribute equals value  | `cy.get('a').should('have.attr', 'href', '/home')`     |
+| `.not.have.attr(name)`    | Element does NOT have attribute | `cy.get('input').should('not.have.attr', 'readonly')`  |
+| `.have.prop(name, value)` | Element property equals value   | `cy.get('input').should('have.prop', 'checked', true)` |
+| `.not.have.prop(name)`    | Element does NOT have property  | `cy.get('input').should('not.have.prop', 'disabled')`  |
+
+
+CSS CLASS AND STYLE
+| Assertion                        | Meaning                                   | Example                                                   |
+| -------------------------------- | ----------------------------------------- | --------------------------------------------------------- |
+| `.have.class(class)`             | Element has the CSS class                 | `cy.get('button').should('have.class', 'active')`         |
+| `.not.have.class(class)`         | Element does NOT have the class           | `cy.get('button').should('not.have.class', 'disabled')`   |
+| `.have.css(property, value)`     | Element CSS property equals value         | `cy.get('div').should('have.css', 'display', 'block')`    |
+| `.not.have.css(property, value)` | Element CSS property does NOT equal value | `cy.get('div').should('not.have.css', 'display', 'none')` |
+
+
+FORM VALUE AND INPUTS
+| Assertion                | Meaning                                   | Example                                             |
+| ------------------------ | ----------------------------------------- | --------------------------------------------------- |
+| `.have.value(value)`     | Input or textarea has specified value     | `cy.get('input').should('have.value', 'test')`      |
+| `.not.have.value(value)` | Input does NOT have that value            | `cy.get('input').should('not.have.value', 'error')` |
+| `.have.length(n)`        | Element or jQuery collection has length n | `cy.get('ul > li').should('have.length', 5)`        |
+| `.be.empty`              | Element has no children or text content   | `cy.get('div.empty').should('be.empty')`            |
+
+
+VISIBILITY AND FOCUS
+| Assertion     | Meaning            | Example                                                |
+| ------------- | ------------------ | ------------------------------------------------------ |
+| `.be.focused` | Element is focused | `cy.focused().should('have.attr', 'name', 'username')` |
+
+CHAI EXPECT STYLE
+| Assertion                 | Meaning                             | Example                              |
+| ------------------------- | ----------------------------------- | ------------------------------------ |
+| `.equal(value)`           | Strict equality                     | `expect(5).to.equal(5)`              |
+| `.not.equal(value)`       | Not equal                           | `expect(5).to.not.equal(3)`          |
+| `.deep.equal(object)`     | Deep equality for objects or arrays | `expect({a:1}).to.deep.equal({a:1})` |
+| `.include(value)`         | String or array contains value      | `expect('foobar').to.include('foo')` |
+| `.not.include(value)`     | Does NOT include value              | `expect([1,2,3]).to.not.include(4)`  |
+| `.above(number)`          | Number is greater than              | `expect(10).to.be.above(5)`          |
+| `.below(number)`          | Number is less than                 | `expect(5).to.be.below(10)`          |
+| `.closeTo(number, delta)` | Number is close to value ± delta    | `expect(3.14).to.be.closeTo(3, 0.1)` |
+
+
+CHAINING Assertion
+cy.get('button#submit')
+  .should('be.visible')               // Button is visible
+  .and('not.be.disabled')             // Button is enabled (not disabled)
+  .and('have.text', 'Submit')         // Button has exact text "Submit"
+  .click()                           // Then click the button
+
+
+IFRAME
+cy.get('iframe')                               // Get the iframe element
+  .its('0.contentDocument.body')               // Get the iframe's body
+  .should('not.be.empty')                      // Ensure iframe is loaded
+  .then(cy.wrap)                               // Wrap iframe body in Cypress
+  .find('h1')                                   // Now you can use .find() like normal
+  .should('contain.text', 'Welcome')           // Assert inside the iframe

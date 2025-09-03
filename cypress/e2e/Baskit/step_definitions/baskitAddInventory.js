@@ -1,4 +1,4 @@
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, When, Then} from '@badeball/cypress-cucumber-preprocessor';
 
 
 Given('user go to Inventory page',()=>{
@@ -90,5 +90,138 @@ When('user choose kategori',()=>{
     cy.get('input[name="subCategoryName"]').should('have.value', 'Minuman - Air Mineral');
 
 })
-When('')
+When('user choose Unit Terkecil',()=>{
+    cy.get('#react-select-2-placeholder')
+  .should('be.visible')                                             // Ensure it's visible
+  .and('have.text', 'e.g. PCS')                                     // Assert exact text
+  .and('have.class', 'css-1vlsb4t-placeholder')                     // Assert it has the correct class
+  .click()
+     cy.get('#react-select-2-option-0')        // First option (text: "kg")
+  .should('be.visible')                   // Ensure it's visible
+  .click();                                                          
 
+})
+When('user click Tambah Unit baru',()=>{
+    cy.contains('button', 'Tambah Unit Baru')  // Find button by text
+  .should('be.visible')                    // Assert it's visible
+  .click();          
+})
+When('user choose Unit',()=>{
+    cy.get('div.text-lg') // Use a specific class to target
+  .should('be.visible')
+  .and('contain.text', 'Tambah Unit');
+    cy.get('input[placeholder="Karton"]')
+  .should('be.visible')
+  .click();
+    cy.get('ul.list-none li button')
+  .first()                             // Select the first <li><button> element (text: "sachet")
+  .should('be.visible')               // Optional: ensure it's visible
+  .click();
+
+})
+When('user input jumlah dalam unit terkecil',()=>{
+    // Generate a random number between 1 and 10
+const randomNum = Math.floor(Math.random() * 10) + 1;
+
+cy.get('input[name="quantity"]')
+  .click({ force: true })                        // Force the click
+  .clear({ force: true })                        // Clear existing value
+  .type(randomNum.toString(), { force: true })   // Type random number
+  .should('have.value', randomNum.toString());   // Assert value was set
+
+})
+When('user click simpan tambah unit',()=>{
+  cy.get('button.btn.btn-primary.btn-sm')  // Select all matching buttons
+  .contains('Simpan')                    // Filter by button text
+  .first()                               // Pick the first one
+  .click({ force: true });               // Click it, force in case of coverage
+            // Wait if needed for UI to update
+
+})
+
+When('user click tambah varian',()=>{
+        cy.wait(2000)
+    cy.get('.btn.btn-outline', { timeout: 10000 }).contains('Tambah Varian')
+    .click({force:true})
+
+    cy.get('div.flex-1.text-lg.text-gray-800.font-bold',) // wait up to 10s
+    .should('be.visible')
+    .and('contain.text', 'Tambah Varian Produk');
+        // Assert it contains the expected text
+
+
+})
+When('user input SKU ID, Barcode, Attribute, Nama Varian, Pajak, Minimum Reorder',()=>{
+    const skuElement = 'input[name="skuId"]'
+    const barcodeElement = 'input[name="barcode"]'
+    const varianElement ='input[name="variantName"]'
+    const minReorderElement = 'input[name="reorderPoint"]'
+
+
+
+    cy.randomType(skuElement,'sku').then((random)=>{
+        cy.get(skuElement).should('have.value',random)
+        
+    })
+    cy.randomType(barcodeElement,'barcode').then((random)=>{
+        cy.get(barcodeElement).should('have.value',random)
+    })
+    cy.get('input[name="attributeType.label"]').click();
+    cy.get('.dropdown-content button').first().click();
+
+    cy.randomType(varianElement,"variant").then((random)=>{
+        cy.get(varianElement).should('have.value',random)
+    })
+    cy.get('input[name="tax.label"]').click();
+    cy.get('.dropdown-content button').contains('(VAT) 11%').click({force:true});
+
+    cy.get(minReorderElement).click({force:true})
+    cy.randomNumber(minReorderElement,)
+    .then((random)=>{
+        cy.get(minReorderElement).should('have.value',random)
+    })
+})
+
+When('user click lanjut',()=>{
+    cy.get('button.btn.btn-primary').contains('Lanjut').click({force:true});
+})
+
+When('user atur variasi and input harga and input stok awal',()=>{
+    cy.get('h2').contains('Atur Variasi').should('be.visible');
+   
+     cy.get('input[placeholder="0"][type="text"]').eq(0)
+        .then((hargaElement)=>{
+            cy.wrap(hargaElement).clear({force:true})
+    
+    cy.randomNumber(hargaElement)
+    .then((random)=>{ 
+        cy.wrap(hargaElement).should('have.value',random)
+    })
+})  
+    cy.get('input[placeholder="0"][type="number"]')
+    .click({force:true})
+    .clear({force:true})
+   cy.get('input[placeholder="0"][type="number"]')
+  .as('quantityInput')
+   
+     cy.randomNumber('@quantityInput')
+    .then((random)=>{
+        cy.get('@quantityInput').should('have.value',`0`+random)
+    })
+     cy.contains('Select...').click({force:true});
+    cy.get('.css-bio7mv-option').eq(0).click({force:true})
+})
+
+When('user click simpan varian',()=>{
+   cy.get('.btn.btn-primary').eq(1).click({force:true});
+})
+When('user choose submit',()=>{
+    
+   cy.get('.btn.btn-primary').eq(0).click({force:true});
+})
+Then('new inventory successfully added',()=>{
+    const createdInventory = Cypress.env('randomProductName');
+       cy.get('#0_name').find('div.line-clamp-2')
+        .should('include.text',createdInventory)
+
+})

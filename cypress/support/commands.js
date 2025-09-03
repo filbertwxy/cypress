@@ -78,4 +78,33 @@ Cypress.Commands.add('inputRandomName', () => {
   // Optionally store the name for later assertions
   Cypress.env('randomProductName', productName);
 });
+Cypress.Commands.add('randomType', (selector,prefix) => {
+  // Generate a random string using base-36 encoding.
+  const randomString = Math.random().toString(36).substring(2, 9);
+  
+  // Create the final SKU value with a prefix.
+  const random = `${prefix}-${randomString}`;
+  
+  // Find the input element by its name attribute and type the random value.
+  cy.get(selector).type(random);
+  return cy.wrap(random)
+});
+
+Cypress.Commands.add('randomNumber', (selector, min = 1, max = 100) => {
+  // Generate a random number between min and max (inclusive).
+  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  const random = randomNumber.toString();
+  
+  // Type the number into the input field.
+  
+  cy.get(selector).type(random,{force:true});
+
+  // Return the number so it can be verified later.
+  return cy.wrap(random);
+});
+
+
+
+
+
 
