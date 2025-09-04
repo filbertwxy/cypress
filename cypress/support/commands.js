@@ -24,9 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import '@testing-library/cypress/add-commands'
-import '@shelex/cypress-allure-plugin';
-import { inventorySelectors } from './selectors/inventory';
-import { loginSelectors } from './selectors/login';
+import '@shelex/cypress-allure-plugin'
+import { inventorySelectors } from './selectors/inventory'
+import { loginSelectors } from './selectors/login'
 
 Cypress.Commands.add('setlocalstorage', (key, value) => {
   cy.window().then((window) => {
@@ -44,7 +44,6 @@ Cypress.Commands.add('Login', (email, password) => {
   cy.findByPlaceholderText(loginSelectors.login.pass).type(password)
   cy.get(loginSelectors.login.submit).click()
 })
-
 
 Cypress.Commands.add('creatingAccessToken', (username, password) => {
   cy.request({
@@ -69,44 +68,38 @@ Cypress.Commands.add('creatingAccessToken', (username, password) => {
 
 Cypress.Commands.add('inputRandomName', () => {
   // Generate random suffix (5 alphanumeric characters)
-  const randomSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
+  const randomSuffix = Math.random().toString(36).substring(2, 7).toUpperCase()
 
   // Create full name starting with 'Testing'
-  const productName = `Testing${randomSuffix}`;
+  const productName = `Testing${randomSuffix}`
 
   // Input into the field
-  cy.get(inventorySelectors.inventory.productName).clear().type(productName);
+  cy.get(inventorySelectors.inventory.productName).clear().type(productName)
 
   // Optionally store the name for later assertions
-  Cypress.env('randomProductName', productName);
-});
-Cypress.Commands.add('randomType', (selector,prefix) => {
+  Cypress.env('randomProductName', productName)
+})
+Cypress.Commands.add('randomType', (selector, prefix) => {
   // Generate a random string using base-36 encoding.
-  const randomString = Math.random().toString(36).substring(2, 9);
-  
+  const randomString = Math.random().toString(36).substring(2, 9)
+
   // Create the final SKU value with a prefix.
-  const random = `${prefix}-${randomString}`;
-  
+  const random = `${prefix}-${randomString}`
+
   // Find the input element by its name attribute and type the random value.
-  cy.get(selector).type(random);
+  cy.get(selector).type(random)
   return cy.wrap(random)
-});
+})
 
 Cypress.Commands.add('randomNumber', (selector, min = 1, max = 100) => {
   // Generate a random number between min and max (inclusive).
-  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  const random = randomNumber.toString();
-  
+  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
+  const random = randomNumber.toString()
+
   // Type the number into the input field.
-  
-  cy.get(selector).type(random,{force:true});
+
+  cy.get(selector).type(random, { force: true })
 
   // Return the number so it can be verified later.
-  return cy.wrap(random);
-});
-
-
-
-
-
-
+  return cy.wrap(random)
+})

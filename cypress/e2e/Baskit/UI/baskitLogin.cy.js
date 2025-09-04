@@ -5,6 +5,4 @@ context('coba login baskit', () => {
     cy.wait(5000)
     cy.get('h1').should('have.text', 'Ringkasan Bisnis')
   })
-
-
 })
