@@ -3,12 +3,13 @@ import { Given, When, Then} from '@badeball/cypress-cucumber-preprocessor';
 
 Given('user go to Inventory page',()=>{
     cy.findByText('Produk').should('have.text','Produk')
-
 })
 
 When ('user click inventaris', () => {
+    
     cy.findByText('Produk').click()
     cy.findByText('Inventaris').click()
+     cy.get('h1').contains('Inventaris');
     cy.wait(2000)
    
   })
