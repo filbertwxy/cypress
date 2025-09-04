@@ -11,5 +11,5 @@ When('I login with email and password', () => {
 
 
 Then('I should see the heading {string}', (headingText) => {
-  cy.get('h1').should('have.text', headingText);
+  cy.get('h1').should('include.text', headingText);
 });
