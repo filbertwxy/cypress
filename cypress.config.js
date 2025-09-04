@@ -16,8 +16,7 @@ module.exports = defineConfig({
       allure: true, // enable allure environment variable
     },
     specPattern: [
-      'cypress/e2e/Baskit/features/*.feature',
-      'cypress/e2e/Baskit/features/inventory/*.feature',
+       'cypress/e2e/Baskit/**/*.feature',
       'cypress/e2e/Baskit/**/*.cy.{js,jsx,ts,tsx}',
     ],
     supportFile: 'cypress/support/commands.js', // your support file
