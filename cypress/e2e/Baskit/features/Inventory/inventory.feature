@@ -1,4 +1,4 @@
-Feature: Inventory
+Feature: Inventory Feature
 
 Background:
     Given I open the login page
