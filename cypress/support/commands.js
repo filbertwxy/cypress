@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import '@testing-library/cypress/add-commands'
 import '@shelex/cypress-allure-plugin';
-import { selectors } from './selectors/inventory';
+import { inventorySelectors } from './selectors/inventory';
 import { loginSelectors } from './selectors/login';
 
 Cypress.Commands.add('setlocalstorage', (key, value) => {
@@ -41,7 +41,7 @@ Cypress.Commands.add('getlocalstorage', (key) => {
 
 Cypress.Commands.add('Login', (email, password) => {
   cy.findByPlaceholderText(loginSelectors.login.email).type(email)
-  cy.findByPlaceholderText(loginSelectors.login.email).type(password)
+  cy.findByPlaceholderText(loginSelectors.login.pass).type(password)
   cy.get(loginSelectors.login.submit).click()
 })
 
@@ -75,7 +75,7 @@ Cypress.Commands.add('inputRandomName', () => {
   const productName = `Testing${randomSuffix}`;
 
   // Input into the field
-  cy.get(selectors.inventory.productName).clear().type(productName);
+  cy.get(inventorySelectors.inventory.productName).clear().type(productName);
 
   // Optionally store the name for later assertions
   Cypress.env('randomProductName', productName);
