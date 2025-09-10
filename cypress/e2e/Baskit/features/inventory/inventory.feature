@@ -2,7 +2,7 @@ Feature: Inventory Feature
 
 Background:
     Given I open the login page
-    And I login with email and password
+    And I login with esmail and password
 
 
 Scenario: Go to Inventory Page

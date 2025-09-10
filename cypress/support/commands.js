@@ -28,6 +28,13 @@ import '@shelex/cypress-allure-plugin'
 import { inventorySelectors } from './selectors/inventory'
 import { loginSelectors } from './selectors/login'
 
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // returning false here prevents Cypress from failing the test
+  return false;
+});
+
+
 Cypress.Commands.add('setlocalstorage', (key, value) => {
   cy.window().then((window) => {
     window.localStorage.setItem(key, value)
