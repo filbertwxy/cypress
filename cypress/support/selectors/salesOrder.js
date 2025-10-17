@@ -6,7 +6,7 @@ export const salesOrderSelectors = {
     tambahPesananPenjualanButton: 'a[href="/order-list/store/so/create"]',
     tambahPenjualanSpan: 'span.text-xl.font-bold',
     tanggalInput: 'input[placeholder="dd/mm/yyyy"]',
-    bisnisPlaceholder:'div.css-1vlsb4t-placeholder:contains("Pilih nama bisnis disini")',
+    bisnisPlaceholder: 'div.css-1vlsb4t-placeholder:contains("Pilih nama bisnis disini")',
     picInput: 'input[placeholder="Masukkan pic disini"]',
     emailInput: 'input[placeholder="Masukkan email disini"]',
     phoneInput: 'input[placeholder="Masukkan nomor telepon disini"]',
@@ -40,5 +40,5 @@ export const salesOrderSelectors = {
     tambahButton: 'button.btn-primary.w-56',
     fileInput: 'input[type="file"][name="file"]',
     refPembelianInput: 'input[placeholder="Masukkan no. ref pesanan pembelian disini"]',
-  }
+  },
 }

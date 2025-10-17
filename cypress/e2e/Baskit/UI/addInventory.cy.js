@@ -6,7 +6,7 @@ context('Add Inventory', () => {
 
   it('go to inventory page', () => {
     cy.findByText('Produk').click()
-    cy.findByText('Inventaris').click()
+    cy.findByText('Inventori').click()
     cy.wait(2000)
     cy.get('button.btn.btn-primary')
      .contains('Tambah Produk')

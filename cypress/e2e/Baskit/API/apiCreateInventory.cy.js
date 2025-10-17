@@ -22,5 +22,4 @@ describe('Inventory', () => {
       cy.log('Inventory Response:', JSON.stringify(response.body))
     })
   })
-
 })

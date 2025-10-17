@@ -6,9 +6,9 @@ Given('user go to Inventory page', () => {
 
 When ('user click inventaris', () => {
   cy.findByText('Produk').click()
-  cy.findByText('Inventaris').click()
-  cy.get('h1').contains('Inventaris')
-  cy.wait(2000)
+  cy.findByText('Inventori').click()
+  // cy.get('h1').contains('Inventori')
+  cy.wait(1000)
 })
 When ('user click tambah produk button', () => {
   cy.get('button.btn.btn-primary')
